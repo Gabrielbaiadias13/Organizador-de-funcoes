@@ -1,0 +1,176 @@
+@import url("https://googleapis.com");
+
+@font-face {
+    font-family: "Junina";
+    src: url("fonts/Chunq.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "poppins", arial;
+}
+
+strong {
+    font-family: "junina";
+    z-index: 2;
+}
+
+body {
+    background-color: #f4ece1; /* A cor de fundo que vai aparecer por trás do pattern */
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Camada mágica do Pattern com Opacidade */
+body::before {
+    content: "";
+    position: fixed; /* Deixa o fundo fixo enquanto você rola a página no celular */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Joga a imagem para trás de todo o conteúdo do site */
+
+    /* Configurações da sua imagem de pattern */
+    background-image: url("images/elementos-mexicanos-desenhados-a-mao-comida-mexicana-padrao-sem-costura_1105619-141.avif");
+    background-repeat: repeat; /* Força a imagem a se repetir em todas as direções */
+    background-size: auto; /* Mantém o tamanho original do padrão, ideal para patterns */
+
+    /* Aqui está a mágica da opacidade */
+    opacity: 0.1; /* 50% de opacidade */
+}
+
+header {
+    display: flex;
+    width: 100vw;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(50px, 4vw, 7vw);
+    margin-top: 20px;
+    color: #c62828;
+}
+
+#addList {
+    width: 80vw;
+    height: 50px;
+    font-size: 1.3em;
+    margin: 20px 10vw 20px 10vw;
+    /* Um verde bandeira mais vivo e festivo */
+    background-color: #00875a;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #005c3e; /* Efeito 3D de botão */
+    transition: all 0.1s ease;
+}
+
+#addList:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.Lists {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.Lists > div {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    /* Tom amadeirado/pinhão bem aconchegante */
+    background-color: #fff3e3;
+    width: 40vw;
+    min-width: 300px;
+    height: fit-content;
+    border-radius: 10px;
+    border: 2px solid #e0cbb2; /* Borda sutil para separar do fundo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.Lists > div > .headList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35px;
+    border-radius: 8px 8px 0 0;
+    /* Vinho/Vermelho quermesse marcante */
+    background-color: #b92c34;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+}
+
+.Lists > div > .addItem {
+    width: calc(50% - 20px);
+    height: 40px;
+    margin: 15px 10px 10px 10px;
+    font-weight: bolder;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 6px;
+    /* Azul clássico de bandeirinha junina para contrastar com o topo vermelho */
+    background-color: #0076a8;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #004d6e;
+}
+
+.Lists > div > .addItem:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
+.Lists > div > ul {
+    width: calc(100% - 40px);
+    list-style-type: none;
+    margin: 0 5px 10px 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Espaçamento entre as linhas da lista */
+}
+
+.Lists > div > ul > li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+
+.Lists > div > ul > li > p {
+    height: 35px;
+    display: flex;
+    padding-left: 12px;
+    align-items: center;
+    border-radius: 6px 0 0 6px;
+    /* Substituído o cinza por um tom Amarelo-Milho/Girassol bem Junino */
+    background-color: #f7c844;
+    color: #4a2f00; /* Texto marrom escuro para dar leitura excelente sobre o amarelo */
+    font-weight: 500;
+}
+
+li > button {
+    height: 35px;
+    /* Vermelho vibrante para o botão de excluir */
+    background-color: #b92c34;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+li > button:hover {
+    background-color: #c62828;
+}
