@@ -1,4 +1,5 @@
 @import url("https://googleapis.com");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @font-face {
     font-family: "Junina";
@@ -13,45 +14,130 @@
     font-family: "poppins", arial;
 }
 
-strong {
-    font-family: "junina";
-    z-index: 2;
-}
-
 body {
-    background-color: #f4ece1; /* A cor de fundo que vai aparecer por trás do pattern */
+    /* background-color: #f4ece1; */
+    background-color: #fdc733;
     position: relative;
     min-height: 100vh;
 }
 
-/* Camada mágica do Pattern com Opacidade */
 body::before {
     content: "";
-    position: fixed; /* Deixa o fundo fixo enquanto você rola a página no celular */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Joga a imagem para trás de todo o conteúdo do site */
-
-    /* Configurações da sua imagem de pattern */
-    background-image: url("images/elementos-mexicanos-desenhados-a-mao-comida-mexicana-padrao-sem-costura_1105619-141.avif");
-    background-repeat: repeat; /* Força a imagem a se repetir em todas as direções */
-    background-size: auto; /* Mantém o tamanho original do padrão, ideal para patterns */
-
-    /* Aqui está a mágica da opacidade */
-    opacity: 0.1; /* 50% de opacidade */
+    background-image: url('images/—Pngtree—textured\ background\ crumpled\ paper\ in_15598741.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 0.4;
+    z-index: -1;
 }
 
 header {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100px;
     align-items: center;
     justify-content: center;
     font-size: clamp(50px, 4vw, 7vw);
-    margin-top: 20px;
-    color: #c62828;
+    padding-top: 50px;
+}
+
+header > strong {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    border-bottom: rgba(0, 0, 255, 0.521) dotted 4px;
+}
+
+header * {
+    font-family: "junina";
+}
+
+header > strong > p:first-child {
+    color: #0101e4;
+}
+
+header > strong > p:last-child {
+    color: green;
+}
+
+header > p {
+    width: fit-content;
+    text-align: center;
+    font-size: 0.5em;
+    margin-top: 8px;
+    font-family: "Courier Prime", monospace;
+    text-transform: uppercase;
+    color: #0101e4;
+}
+
+#popup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(87, 88, 0, 0.342);
+    backdrop-filter: blur(3px);
+    z-index: 2;
+}
+
+#popup > div {
+    display: grid;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    background-color: #e0cbb2;
+    border-radius: 10px;
+    justify-content: center;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    box-shadow: 0 5px 8px #4a2f0067;
+}
+
+#popup > div > button {
+    margin-left: calc(100% - 30px);
+    border: none;
+    outline: none;
+    background-color: #e015154d;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    font-size: 1.05em;
+}
+
+#popup > div > label {
+    font-size: 1.2em;
+}
+
+#popup > div > input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.05em;
+}
+
+#popup > div > input[type="button"] {
+    background-color: #00875a;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 3px 0 #006443;
+}
+
+#popup > div > input[type="button"]:active {
+    transform: translateY(3px);
+    box-shadow: none;
 }
 
 #addList {
@@ -59,15 +145,15 @@ header {
     height: 50px;
     font-size: 1.3em;
     margin: 20px 10vw 20px 10vw;
-    /* Um verde bandeira mais vivo e festivo */
     background-color: #00875a;
     color: white;
     font-weight: bold;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 4px 0 #005c3e; /* Efeito 3D de botão */
+    box-shadow: 0 4px 0 #005c3e;
     transition: all 0.1s ease;
+    margin-top: clamp(50px, 60px, 100px);
 }
 
 #addList:active {
@@ -87,14 +173,31 @@ header {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    /* Tom amadeirado/pinhão bem aconchegante */
     background-color: #fff3e3;
     width: 40vw;
     min-width: 300px;
     height: fit-content;
     border-radius: 10px;
-    border: 2px solid #e0cbb2; /* Borda sutil para separar do fundo */
+    border: 2px solid #e0cbb2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+    position: relative; 
+    z-index: 1;       
+    overflow: hidden;
+}
+
+.Lists > div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/elementos-mexicanos-desenhados-a-mao-comida-mexicana-padrao-sem-costura_1105619-141.avif");
+    background-repeat: repeat;
+    background-size: 60%;
+    opacity: 0.2;
+    z-index: -1;
 }
 
 .Lists > div > .headList {
@@ -104,8 +207,7 @@ header {
     width: 100%;
     height: 35px;
     border-radius: 8px 8px 0 0;
-    /* Vinho/Vermelho quermesse marcante */
-    background-color: #b92c34;
+    background-color: #00875a;
     color: #ffffff;
     font-weight: bold;
     font-size: 1.1em;
@@ -120,7 +222,6 @@ header {
     font-size: 1.2em;
     border: none;
     border-radius: 6px;
-    /* Azul clássico de bandeirinha junina para contrastar com o topo vermelho */
     background-color: #0076a8;
     color: white;
     cursor: pointer;
@@ -139,7 +240,7 @@ header {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* Espaçamento entre as linhas da lista */
+    gap: 6px;
 }
 
 .Lists > div > ul > li {
@@ -154,15 +255,13 @@ header {
     padding-left: 12px;
     align-items: center;
     border-radius: 6px 0 0 6px;
-    /* Substituído o cinza por um tom Amarelo-Milho/Girassol bem Junino */
     background-color: #f7c844;
-    color: #4a2f00; /* Texto marrom escuro para dar leitura excelente sobre o amarelo */
+    color: #4a2f00;
     font-weight: 500;
 }
 
 li > button {
     height: 35px;
-    /* Vermelho vibrante para o botão de excluir */
     background-color: #b92c34;
     color: white;
     font-weight: bold;

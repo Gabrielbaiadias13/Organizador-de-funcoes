@@ -7,8 +7,18 @@
         <title>Organizador de Funções</title>
     </head>
     <body>
+        <div id="popup">
+            <div>
+                <label for="input"></label>
+                <button onclick="TogglePopup()">✕</button>
+                <input name="input" type="text" required><br>
+                <input id="addPopup" type="button" value="Adicionar">
+            </div>
+        </div>
         <header>
-            <strong>Copa Junina</strong>
+            <strong><p>Copa</p> <p>Junina</p></strong>
+            <p>do forró da cidade</p>
+            <!--Colocar ao lado "forro da cidade"-->
         </header>
         <main>
             <input id="addList" type="button" value="＋" />
@@ -53,4 +63,6 @@
         <footer></footer>
     </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="script.js"></script>
