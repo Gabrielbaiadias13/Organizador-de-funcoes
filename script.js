@@ -1,149 +1,120 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyAQGXkA5OIhb9JrdxbBpYiMda89FJ8-nLA",
-    authDomain: "organizador-de-funcoes.firebaseapp.com",
-    projectId: "organizador-de-funcoes",
-    storageBucket: "organizador-de-funcoes.firebasestorage.app",
-    messagingSenderId: "408667041941",
-    appId: "1:408667041941:web:7e6812a0a4f3f92b21ab9c",
-    measurementId: "G-B5DFESKKTR",
-};
+let Lists = [
+    { lim: 3, names: ["Gabriel"] },
+    { lim: 3, names: [] },
+    { lim: 3, names: [] },
+    { lim: 3, names: ["Gabriel", "maria"] },
+    { lim: 2, names: [] },
+    { lim: 3, names: [] },
+    { lim: 3, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: ["Cleber"] },
+    { lim: 1, names: ["Joao"] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+    { lim: 1, names: [] },
+];
 
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+let limitList;
+function RenderList() {
+    let index = 0;
+    Lists.forEach((list) => {
+        const listElement = document.querySelector(`[data-id="${index}"]`);
+        let stageElement = listElement.parentElement.querySelector(".stage");
 
-function salvarNoBanco(dadosDasListas) {
-    database
-        .ref("organizador/listas")
-        .set(dadosDasListas)
-        .catch((error) => {
-            console.error(error);
-        });
+        stageElement.textContent = `${Lists[index].names.length}/${Lists[index].lim}`;
+
+        if (listElement) {
+            listElement.innerHTML = "";
+            list.names.forEach((name) => {
+                CreateItem(index, name, true);
+            });
+        }
+        index++;
+    });
 }
 
-database.ref("organizador/listas").on("value", (snapshot) => {
-    const listasAtualizadas = snapshot.val();
-    if (listasAtualizadas) {
-        renderizarListasNaTela(listasAtualizadas);
-    } else {
-        renderizarListasNaTela([]);
-    }
-});
+RenderList();
 
-function renderizarListasNaTela(listas) {
-    console.log(listas);
-}
-
-const popup = document.getElementById("popup");
-const popupInput = document.getElementsByName("input")[0];
-const popupLabel = document.querySelector("#popup > div > label");
-const btnAddPopup = document.getElementById("addPopup");
-let lastBtn;
-// ao inves de btnList ser ele quem identifica qual o outimo botao clicado intercalando entre o botao de add item e o de add lista
-
-btnAddPopup.addEventListener("click", () => {
-    if (lastBtn.id == "addList") {
-        CreateList();
-    } else {
-        const ulList = lastBtn.nextElementSibling;
-        console.log(ulList);
-        adicionarItemNaLista(ulList);
-    }
-
-    if (lastBtn.nextElementSibling.childElementCount > 2) {
-        lastBtn.previousElementSibling.style.backgroundColor = "#b92c34";
-    }
-    TogglePopup();
-});
-
-// --- FUNÇÃO PARA CRIAR ITEM (LI) DENTRO DE UMA LISTA ---
-function adicionarItemNaLista(listaUl) {
-    if (popupInput.value.trim() !== "") {
+function CreateItem(idList, name, render = false) {
+    const listElement = document.querySelector(`[data-id="${idList}"]`);
+    if (name.trim() !== "") {
+        if (!render) {
+            if (Lists[idList].lim != Lists[idList].names.length) {
+                Lists[idList].names.push(name);
+            }
+        }
         const novoLi = document.createElement("li");
 
         const novoParagrafo = document.createElement("p");
-        novoParagrafo.textContent = popupInput.value.trim();
+        novoParagrafo.textContent = name.trim();
 
         const botaoExcluir = document.createElement("button");
         botaoExcluir.textContent = "✕";
-        botaoExcluir.addEventListener("click", function () {
+        botaoExcluir.addEventListener("click", function (e) {
+            let nameElement = e.target.previousElementSibling.textContent;
+            let index = Lists[idList].names.findIndex(
+                (item) => item === nameElement,
+            );
+            if (index > -1) {
+                Lists[idList].names.splice(index, 1);
+            }
             novoLi.remove();
+            UpdateStatusList(listElement);
         });
 
         novoLi.appendChild(novoParagrafo);
         novoLi.appendChild(botaoExcluir);
-        listaUl.appendChild(novoLi);
+        listElement.appendChild(novoLi);
+        UpdateStatusList(listElement);
     }
 }
 
-function TogglePopup(msgLabel) {
-    popupLabel.textContent = "";
-    popupInput.value = "";
-    if (popup.style.display == "flex") {
-        popup.style = "display: none;";
+function UpdateStatusList(listElement) {
+    let idList = listElement.dataset.id;
+    let stageElement = listElement.parentElement.querySelector(".stage");
+
+    stageElement.textContent = `${Lists[idList].names.length}/${Lists[idList].lim}`;
+
+    if (Lists[idList].names.length == Lists[idList].lim) {
+        listElement.previousElementSibling.previousElementSibling.style.backgroundColor =
+            "#b92c34";
     } else {
-        popup.style = "display: flex;";
-        popupLabel.textContent = msgLabel;
+        listElement.previousElementSibling.previousElementSibling.style.backgroundColor =
+            "#00875a";
     }
+}
+
+function UpdateJSON() {}
+
+const popup = document.getElementById("popup");
+const popupInput = document.getElementsByName("input")[0];
+
+function TogglePopup() {
+    popupInput.value = "";
+
+    popup.style.display == "flex"
+        ? (popup.style = "display: none;")
+        : (popup.style = "display: flex;");
+
     popupInput.focus();
 }
 
-// --- CONFIGURAÇÃO DOS BOTÕES JÁ EXISTENTES NO HTML ---
-// Mapeia os botões pequenos que já vieram fixos no HTML
-const botoesAdicionarExistentes = document.querySelectorAll(".addItem");
-botoesAdicionarExistentes.forEach((botao) => {
-    botao.addEventListener("click", (e) => {
-        lastBtn = e.target;
-        if (e.target.nextElementSibling.childElementCount <= 2) {
-            TogglePopup("Digite seu nome:");
+let currentIdList;
+
+document.querySelectorAll(".addItem").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        currentIdList = e.target.nextElementSibling.dataset.id;
+        if (Lists[currentIdList].lim != Lists[currentIdList].names.length) {
+            TogglePopup();
         }
     });
 });
 
-// --- FUNÇÃO DO BOTÃO GRANDÃO DO TOPO (#addList) ---
-const botaoCriarLista = document.getElementById("addList");
-const containerListas = document.querySelector(".Lists");
-
-botaoCriarLista.addEventListener("click", (e) => {
-    lastBtn = e.target;
-    TogglePopup("Nome da nova lista:");
+document.getElementById("btnAddPopup").addEventListener("click", () => {
+    CreateItem(currentIdList, popupInput.value);
+    TogglePopup();
 });
-
-function CreateList() {
-    // 1. Pede o nome do novo Caldo/Comida
-
-    // Valida se não está vazio
-    if (popupInput.value.trim() !== "") {
-        // 2. Cria a estrutura do quadrado da lista (div principal)
-        const novaCaixaDiv = document.createElement("div");
-
-        // 3. Cria o título da lista com o nome digitado
-        const novaHeadDiv = document.createElement("div");
-        novaHeadDiv.className = "headList";
-        novaHeadDiv.textContent = popupInput.value.trim();
-
-        // 4. Cria o botão pequeno de adicionar itens (+)
-        const novoBotaoItem = document.createElement("input");
-        novoBotaoItem.type = "button";
-        novoBotaoItem.className = "addItem";
-        novoBotaoItem.value = "＋";
-
-        // Atribui a função de clique para este novo botão dinâmico
-        novoBotaoItem.addEventListener("click", (e) => {
-            lastBtn = e.target;
-            if (e.target.nextElementSibling.childElementCount < 3) {
-                TogglePopup("Digite seu nome:");
-            }
-        });
-
-        // 5. Cria a lista vazia (ul)
-        const novaUl = document.createElement("ul");
-
-        // 6. Encaixa as peças dentro da div da caixa
-        novaCaixaDiv.appendChild(novaHeadDiv);
-        novaCaixaDiv.appendChild(novoBotaoItem);
-        novaCaixaDiv.appendChild(novaUl);
-
-        // 7. Joga a caixa completa para dentro do container do site
-        containerListas.appendChild(novaCaixaDiv);
-    }
-}

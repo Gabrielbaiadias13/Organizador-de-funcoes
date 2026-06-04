@@ -8,15 +8,19 @@
     </head>
     <body>
         <div id="popup">
+            <div id="blur"></div>
             <div>
-                <label for="input"></label>
+                <label for="input">Digite seu nome:</label>
                 <button onclick="TogglePopup()">✕</button>
-                <input name="input" type="text" required><br>
-                <input id="addPopup" type="button" value="Adicionar">
+                <input name="input" type="text" required /><br />
+                <input id="btnAddPopup" type="button" value="Adicionar" />
             </div>
         </div>
         <header>
-            <strong><p>Copa</p> <p>Junina</p></strong>
+            <strong
+                ><p>Copa</p>
+                <p>Junina</p></strong
+            >
             <p>do forró da cidade</p>
             <!--Colocar ao lado "forro da cidade"-->
         </header>
@@ -24,43 +28,160 @@
             <input id="addList" type="button" value="＋" />
             <section class="Lists">
                 <div>
-                    <div class="headList">Caldo de feijão</div>
+                    <div class="headList">
+                        Caldo de feijão <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="0"></ul>
                 </div>
 
                 <div>
-                    <div class="headList">Canjiquinha</div>
+                    <div class="headList">
+                        Canjiquinha <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="1"></ul>
                 </div>
 
                 <div>
-                    <div class="headList">Caldo de pinto</div>
+                    <div class="headList">
+                        Caldo de pinto <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="2"></ul>
                 </div>
 
                 <div>
-                    <div class="headList">Canjicao</div>
+                    <div class="headList">
+                        Canjicao <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="3"></ul>
                 </div>
 
                 <div>
-                    <div class="headList">Arroz doce</div>
+                    <div class="headList">
+                        Arroz doce <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="4"></ul>
                 </div>
 
                 <div>
-                    <div class="headList">Cachorro quente</div>
+                    <div class="headList">
+                        Cachorro quente <strong class="stage"></strong>
+                    </div>
                     <input class="addItem" type="button" value="＋" />
-                    <ul></ul>
+                    <ul data-id="5"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        Cachorro quente <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="6"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        1 cx de 50 paçocas <br> 2 refrigerantes
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="7"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        1 cx 25 pé de moleque <br> 2 refrigerantes
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="8"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        1 cx 25 cocada <br> 2 refrigerantes
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="9"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        1 cx doce de amendoim <br> 2 refrigerantes
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="10"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        1 broa de milho <br> 3 refri de 2 litros
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="11"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        20 milhos cozidos <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="12"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        100 potes de caldo ISOPOR
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="13"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        200 colheres plástico refeição
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="14"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                        200 copos plásticos coloridos
+                        <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="15"></ul>
+                </div>
+
+                <div>
+                    <div class="headList">
+                         4 pacotinhos de guardanapos brancos<br> 2 pacotinhos de
+                        guardanapos coloridos <strong class="stage"></strong>
+                    </div>
+                    <input class="addItem" type="button" value="＋" />
+                    <ul data-id="16"></ul>
                 </div>
             </section>
         </main>
-        <footer></footer>
+        <footer>
+            Criado por
+            <a
+                href="https://github.com/GabrielBaiaDias/GabrielBaiaDias"
+                target="_blank"
+                >Gabriel Baia</a
+            >
+            &#169;
+        </footer>
     </body>
 </html>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
